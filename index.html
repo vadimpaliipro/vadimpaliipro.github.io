@@ -12,7 +12,7 @@
 :root{
   --bg:#f4f6fb; --surface:#ffffff; --surface-2:#e9eef8; --ink:#0a1230; --ink-2:#3c4669; --muted:#6b7594;
   --line:rgba(10,18,48,.10); --brand:#0b2a8a; --brand-2:#1c4fd8; --accent:#ffb020; --accent-ink:#1a1100;
-  --hero-a:#040a26; --hero-b:#0a2070; --hero-c:#1646c4; --on-hero:#eef2ff; --on-hero-2:rgba(238,242,255,.72);
+  --hero-flat:#092063; --hero-a:#040a26; --hero-b:#0a2070; --hero-c:#1646c4; --on-hero:#eef2ff; --on-hero-2:rgba(238,242,255,.72);
   --ok:#0e9f6e; --shadow:0 18px 50px -20px rgba(10,30,100,.35);
   --r:20px; --gut:max(16px, env(safe-area-inset-left)); --gut-r:max(16px, env(safe-area-inset-right));
 }
@@ -52,9 +52,8 @@ section{padding:clamp(64px,9vw,112px) 0}
 
 /* hero */
 .hero{position:relative;color:var(--on-hero);padding:clamp(110px,14vw,150px) 0 clamp(64px,8vw,96px);overflow:hidden;
-  background:radial-gradient(1000px 600px at 78% 30%, var(--hero-c) 0%, transparent 60%),
-             linear-gradient(160deg,var(--hero-a) 0%, var(--hero-b) 70%, #0c2a8f 100%)}
-.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background:var(--hero-flat)}
+.hero::after{display:none;content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;
   background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
   background-size:64px 64px;mask-image:radial-gradient(ellipse at 70% 40%,#000 0%,transparent 70%)}
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
@@ -92,7 +91,7 @@ section{padding:clamp(64px,9vw,112px) 0}
 .card p{color:var(--ink-2)}
 
 /* funnel math */
-.math{margin-top:40px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.math{margin-top:24px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
 .math div{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 14px;text-align:center;position:relative}
 .math b{display:block;font:800 clamp(30px,4vw,44px)/1 Unbounded,Manrope,system-ui,sans-serif;color:var(--brand-2)}
 .math span{display:block;margin-top:8px;font-size:15px;color:var(--ink-2)}
@@ -131,6 +130,10 @@ section{padding:clamp(64px,9vw,112px) 0}
 .stat b{display:block;font:800 clamp(26px,3vw,34px)/1 Unbounded,Manrope,system-ui,sans-serif;color:var(--brand-2)}
 .stat span{display:block;margin-top:8px;font-size:15px;color:var(--ink-2);line-height:1.4}
 
+.bg-title{margin-top:18px;font-weight:700;color:var(--ink)}
+.bg{list-style:none;display:grid;gap:8px;margin:10px 0 18px}
+.bg li{position:relative;padding-left:22px;color:var(--ink-2)}
+.bg li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--accent)}
 /* cases */
 .cases{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:36px}
 .case{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
@@ -170,6 +173,15 @@ footer{padding:40px 0 calc(110px + env(safe-area-inset-bottom));color:var(--mute
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 footer a{color:var(--ink-2)}
 
+
+.hero-art{position:relative;display:grid;place-items:center}
+.hero-art img{position:relative;width:100%;max-width:560px;height:auto;
+  -webkit-mask-image:linear-gradient(to top,transparent 0,#000 8%);mask-image:linear-gradient(to top,transparent 0,#000 8%)}
+.evening{font:800 clamp(24px,3.6vw,38px)/1.15 Unbounded,Manrope,system-ui,sans-serif;color:var(--accent-ink);background:var(--accent);display:inline-block;padding:14px 20px;border-radius:16px;margin-top:28px;letter-spacing:-.01em}
+.case .vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+.case .vid::before,.case .vid span{position:relative;z-index:1}
+.case .vid span{position:absolute;text-shadow:0 1px 6px rgba(0,0,0,.45)}
+.offer.mid{padding:clamp(56px,7vw,88px) 0}
 /* sticky bar */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:20;transform:translateY(110%);transition:transform .25s ease;
   background:rgba(4,10,38,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--on-hero);
@@ -182,6 +194,7 @@ footer a{color:var(--ink-2)}
 .bar .btn{min-height:48px;padding:0 22px;font-size:16px;flex:none}
 
 @media (max-width:900px){
+  .hero .hero-art{max-width:360px;margin:0 auto;order:-1}
   .hero .wrap,.split,.author .split{grid-template-columns:1fr}
   .hero .photo{max-width:420px;order:-1;margin-top:8px}
   .grid3,.cases{grid-template-columns:1fr}
@@ -197,7 +210,8 @@ footer a{color:var(--ink-2)}
   .timer .cell{min-width:52px}
   .btn{width:100%}
   .bar .btn{width:auto}
-  .top a.mini{display:none}
+  .top{display:none}
+  .hero{padding-top:36px}
   .price{padding:18px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -235,10 +249,7 @@ footer a{color:var(--ink-2)}
         <div class="timer-cap">До повышения цены — до <b>23:59</b> по твоему времени</div>
       </div>
     </div>
-    <div class="photo">
-      <img src="hero.webp" alt="Вадим Палий" width="640" height="640">
-      <div class="tag"><b>Вадим Палий</b>Тысячи закрытых сделок, 43&nbsp;проданные франшизы, 10+&nbsp;млн&nbsp;€ инвестиций в&nbsp;отели</div>
-    </div>
+    <div class="hero-art"><img src="hero.webp" alt="Бумажный самолёт из купюры летит, оставляя след из монет" width="900" height="835"></div>
   </div>
 </section>
 
@@ -249,7 +260,7 @@ footer a{color:var(--ink-2)}
     <div class="grid3">
       <div class="card"><div class="q">«Я подумаю»</div><p>Клиент был тёплый, сказал «интересно» — и&nbsp;пропал. Писать снова неловко, а&nbsp;время идёт.</p></div>
       <div class="card"><div class="q">«Не хочу навязываться»</div><p>Страх показаться назойливым останавливает раньше, чем клиент успевает сказать «да».</p></div>
-      <div class="card"><div class="q">«Нужно сейчас»</div><p>Сделки висят неделями, а&nbsp;деньги нужны в&nbsp;этом месяце. Длинные курсы по&nbsp;продажам тут не&nbsp;спасут.</p></div>
+      <div class="card"><div class="q">«Нужно сейчас»</div><p>Сделки висят неделями, а&nbsp;деньги нужны завтра. Длинные курсы по&nbsp;продажам тут не&nbsp;спасут.</p></div>
     </div>
   </div>
 </section>
@@ -258,7 +269,8 @@ footer a{color:var(--ink-2)}
   <div class="wrap">
     <span class="eyebrow">Простая математика дня</span>
     <h2>Один вечер — и&nbsp;первые оплаты</h2>
-    <p class="lead">В&nbsp;твоих переписках обычно 20–30 человек, которые уже интересовались. Практикум показывает, как правильно к&nbsp;ним вернуться.</p>
+    <p class="lead">В&nbsp;твоём телефоне уже есть 20–30 человек, которые у&nbsp;тебя купят. На&nbsp;практикуме ты правильно к&nbsp;ним вернёшься и&nbsp;продашь свой продукт.</p>
+    <div class="evening">Пример: что можно сделать за&nbsp;один вечер</div>
     <div class="math">
       <div><b>20</b><span>сообщений</span></div>
       <div><b>10</b><span>ответов</span></div>
@@ -296,7 +308,7 @@ footer a{color:var(--ink-2)}
       <div class="mod"><div class="num">04</div><div><h3>Поиск контактов</h3><p>Где лежат твои быстрые деньги: разбираем переписки, базу и&nbsp;окружение. Собираешь список из&nbsp;20–30 тёплых контактов.</p></div></div>
       <div class="mod"><div class="num">05</div><div><h3>Отрабатываем возражения</h3><p>Готовые ответы на&nbsp;«дорого», «посоветуюсь», «нет времени» и&nbsp;«потом». Без давления и&nbsp;уговоров.</p></div></div>
       <div class="mod"><div class="num">06</div><div><h3>AI-продавец</h3><p>Настраиваешь нейросеть, которая помогает писать клиентам, готовить касания и&nbsp;отвечать на&nbsp;возражения в&nbsp;твоём стиле.</p></div></div>
-      <div class="mod final"><div class="num">★</div><div><h3>Финал: первые деньги</h3><p>Отправляешь касания по&nbsp;своему списку, назначаешь встречи и&nbsp;выставляешь счета. Результат — в&nbsp;деньгах, а&nbsp;не&nbsp;в&nbsp;конспекте.</p></div></div>
+      <div class="mod final"><div class="num">★</div><div><h3>Финал: первые деньги</h3><p>Отправляешь касания по&nbsp;своему списку и&nbsp;получаешь первые деньги. А&nbsp;главное — навык быстро создавать доход. Этот навык останется с&nbsp;тобой навсегда.</p></div></div>
     </div>
   </div>
 </section>
@@ -314,19 +326,46 @@ footer a{color:var(--ink-2)}
   </div>
 </section>
 
+<section class="offer mid">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#9db8ff">Участие</span>
+    <h2>Забирай практикум сегодня</h2>
+    <div class="price">
+      <div>
+        <div class="old">Обычная цена <s>15 000 ₽</s></div>
+        <div class="now">1 490 ₽<small>ЦЕНА ТОЛЬКО СЕГОДНЯ</small></div>
+      </div>
+      <div class="timer" data-timer>
+        <div class="cell"><div class="n" data-h>00</div><div class="l">час</div></div>
+        <div class="cell"><div class="n" data-m>00</div><div class="l">мин</div></div>
+        <div class="cell"><div class="n" data-s>00</div><div class="l">сек</div></div>
+      </div>
+    </div>
+    <a class="btn js-pay" href="https://t.me/vadim_palii_bot" target="_blank" rel="noopener">🔥 Участвовать за 1 490 ₽</a>
+  </div>
+</section>
+
 <section class="author">
   <div class="wrap split">
-    <div class="photo"><img src="hero.webp" alt="Вадим Палий" width="640" height="640" loading="lazy"></div>
+    <div class="photo"><img src="author.webp" alt="Вадим Палий" width="640" height="640" loading="lazy"></div>
     <div>
       <span class="eyebrow">Автор практикума</span>
       <h2>Вадим Палий</h2>
-      <p class="lead">Серийный предприниматель, автор книги «Карты влияния». В&nbsp;практикуме — то, что делали мои ученики и&nbsp;клиенты, когда деньги были нужны срочно, и&nbsp;что помогло мне лично.</p>
+      <p class="lead">Серийный предприниматель, инвестор, спикер, автор книги «Карты влияния».</p>
+      <p class="bg-title">В&nbsp;бэкграунде:</p>
+      <ul class="bg">
+        <li>Основатель сети салонов массажа DAR DARY (43&nbsp;точки)</li>
+        <li>Построил природный отель «Счастье» в&nbsp;Сочи</li>
+        <li>Бизнес-ментор и&nbsp;тренер по&nbsp;коммуникациям</li>
+      </ul>
+      <p class="lead">В&nbsp;практикуме — то, что делали мои ученики и&nbsp;клиенты, когда деньги были нужны срочно, и&nbsp;что помогло мне лично.</p>
       <div class="stats">
-        <div class="stat"><b>Тысячи</b><span>закрытых сделок — лично и&nbsp;с&nbsp;командой</span></div>
-        <div class="stat"><b>43</b><span>проданные франшизы с&nbsp;чеком от&nbsp;5&nbsp;000&nbsp;€</span></div>
-        <div class="stat"><b>10+ млн €</b><span>инвестиций привлечено в&nbsp;отельный бизнес</span></div>
-        <div class="stat"><b>до 10 000 €</b><span>стоимость моего консалтинга</span></div>
+        <div class="stat"><b>43</b><span>проданные франшизы с&nbsp;чеком от&nbsp;5&nbsp;000&nbsp;$</span></div>
+        <div class="stat"><b>12 млн $</b><span>инвестиций привлечено в&nbsp;туристические проекты</span></div>
+        <div class="stat"><b>8</b><span>отделов продаж построено</span></div>
+        <div class="stat"><b>350</b><span>предпринимателей и&nbsp;экспертов прошли программы</span></div>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -337,19 +376,19 @@ footer a{color:var(--ink-2)}
     <h2>Результаты в&nbsp;деньгах</h2>
     <div class="cases">
       <article class="case">
-        <a class="vid" href="https://youtu.be/YE8bRK0YZPk" style="background:url(https://i.ytimg.com/vi/YE8bRK0YZPk/hqdefault.jpg) center/cover" target="_blank" rel="noopener"><span>Видеоотзыв</span></a>
+        <a class="vid" href="https://youtu.be/YE8bRK0YZPk" target="_blank" rel="noopener"><img src="review1.webp" alt="" loading="lazy" width="960" height="600"><span>Видеоотзыв</span></a>
         <div class="body"><h3>Егор Гонин</h3><div class="role">Онлайн-клуб и обучение · личная консультация</div><p>Ставили цель заработать не&nbsp;меньше 300&nbsp;тысяч. В&nbsp;итоге запуск принёс 1,4&nbsp;млн&nbsp;₽, прибыль — около 400&nbsp;тысяч.</p><p class="quote">«Один звонок на&nbsp;час за&nbsp;50&nbsp;000&nbsp;₽ — один из&nbsp;самых ценных звонков»</p></div>
       </article>
       <article class="case">
-        <a class="vid" href="https://youtu.be/LFIDPD8yHEM" style="background:url(https://i.ytimg.com/vi/LFIDPD8yHEM/hqdefault.jpg) center/cover" target="_blank" rel="noopener"><span>Видеоотзыв</span></a>
+        <a class="vid" href="https://youtu.be/LFIDPD8yHEM" target="_blank" rel="noopener"><img src="review2.webp" alt="" loading="lazy" width="960" height="600"><span>Видеоотзыв</span></a>
         <div class="body"><h3>Денис Ффринг</h3><div class="role">Предприниматель · индивидуальная работа</div><p>Понял, как успевать больше, получать от&nbsp;работы удовольствие и&nbsp;больше зарабатывать. Пробил свой стеклянный потолок по&nbsp;доходу.</p><p class="quote">«Вадим будто заражает тебя вирусом достижения целей»</p></div>
       </article>
       <article class="case">
-        <a class="vid" href="https://youtu.be/c1ngCHvK3rc" style="background:url(https://i.ytimg.com/vi/c1ngCHvK3rc/hqdefault.jpg) center/cover" target="_blank" rel="noopener"><span>Видеоотзыв</span></a>
+        <a class="vid" href="https://youtu.be/c1ngCHvK3rc" target="_blank" rel="noopener"><img src="review3.webp" alt="" loading="lazy" width="960" height="600"><span>Видеоотзыв</span></a>
         <div class="body"><h3>Олег Гупалов</h3><div class="role">Основатель агентства интернет-маркетинга, 16+ лет в&nbsp;бизнесе</div><p>За&nbsp;два месяца в&nbsp;мастер-группе убрали внутренние блоки, высвободилась энергия — и&nbsp;это уже дало рост в&nbsp;деньгах. Советы сильных предпринимателей из&nbsp;группы усилили стратегию и&nbsp;продукт.</p><p class="quote">«Как в&nbsp;спорте: высоких результатов не&nbsp;достичь без тренера»</p></div>
       </article>
       <article class="case">
-        <a class="vid" href="https://youtu.be/S6bD1MUVCJA" style="background:url(https://i.ytimg.com/vi/S6bD1MUVCJA/hqdefault.jpg) center/cover" target="_blank" rel="noopener"><span>Видеоотзыв</span></a>
+        <a class="vid" href="https://youtu.be/S6bD1MUVCJA" target="_blank" rel="noopener"><img src="review4.webp" alt="" loading="lazy" width="960" height="600"><span>Видеоотзыв</span></a>
         <div class="body"><h3>Гузель Нигматуллина</h3><div class="role">Массажист · курс «Успешный бизнес массажиста»</div><p>Научилась продавать и&nbsp;подавать себя как специалиста, выполнила финансовую цель курса — клиенты начали записываться сами. Открыла собственный кабинет.</p><p class="quote">«Бери, изучай, применяй — и&nbsp;результат неизбежен»</p></div>
       </article>
     </div>
@@ -363,7 +402,7 @@ footer a{color:var(--ink-2)}
     <div class="fmt">
       <div><b>Онлайн</b><span>Короткие видеоуроки — смотришь в&nbsp;удобное время.</span></div>
       <div><b>В Telegram</b><span>Уроки и&nbsp;материалы приходят в&nbsp;бота сразу после оплаты.</span></div>
-      <div><b>Практика</b><span>Задание после каждого урока — делаешь прямо по&nbsp;ходу.</span></div>
+      <div><b>Практика</b><span>Задание в&nbsp;каждом уроке — делаешь прямо по&nbsp;ходу.</span></div>
       <div><b>Инструменты</b><span>Скрипты, шаблоны оффера и&nbsp;AI-продавец остаются у&nbsp;тебя.</span></div>
     </div>
   </div>
@@ -445,7 +484,7 @@ footer a{color:var(--ink-2)}
   function onScroll(){
     var pastHero = hero.getBoundingClientRect().bottom < 0;
     var r = buy.getBoundingClientRect(), inBuy = r.top < innerHeight && r.bottom > 0;
-    bar.classList.toggle('show', pastHero && !inBuy);
+    bar.classList.add('show');
   }
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 })();
