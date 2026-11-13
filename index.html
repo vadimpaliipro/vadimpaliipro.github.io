@@ -114,6 +114,8 @@ section{padding:clamp(64px,9vw,112px) 0}
 .mod.final{background:linear-gradient(150deg,var(--hero-a),var(--hero-b));border:0;color:var(--on-hero)}
 .mod.final p{color:var(--on-hero-2)}
 .mod.final .num{-webkit-text-stroke:0;color:var(--accent)}
+.mod.bonus{background:rgba(255,176,32,.12);border:1.5px solid rgba(255,176,32,.6)}
+.mod.bonus .num{-webkit-text-stroke:0;color:inherit}
 
 /* who */
 .who{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
@@ -318,7 +320,7 @@ footer .req{display:block;font-size:12px;margin-top:4px}
       <li>Соберёшь оффер, от&nbsp;которого сложно отказаться</li>
       <li>Найдёшь 20–30 тёплых контактов, которым нужен твой продукт прямо сейчас</li>
       <li>Получишь скрипты касаний и&nbsp;ответы на&nbsp;«дорого», «посоветуюсь», «нет времени»</li>
-      <li>Получишь AI-продавца, который помогает писать клиентам</li>
+      <li>🎁 Ранний доступ к&nbsp;игре GOLDEN STONE — AI будет учить тебя переговорам и&nbsp;речевому влиянию</li>
     </ul>
   </div>
 </section>
@@ -326,15 +328,15 @@ footer .req{display:block;font-size:12px;margin-top:4px}
 <section id="program" style="padding-top:0">
   <div class="wrap">
     <span class="eyebrow">Программа</span>
-    <h2>6 блоков и&nbsp;финал</h2>
+    <h2>5 блоков, финал и&nbsp;бонус</h2>
     <div class="prog">
       <div class="mod"><div class="num">01</div><div><h3>Дело не в&nbsp;рынке и&nbsp;не&nbsp;в&nbsp;карме</h3><p>Снимаем страх «навязаться» и&nbsp;убеждения, которые мешают продавать. После этого блока писать клиентам становится легко.</p></div></div>
       <div class="mod"><div class="num">02</div><div><h3>Реальные причины зависания сделок</h3><p>Почему клиенты говорят «я подумаю» и&nbsp;пропадают — и&nbsp;что с&nbsp;этим делать уже сегодня.</p></div></div>
       <div class="mod"><div class="num">03</div><div><h3>Предложение, от&nbsp;которого невозможно отказаться</h3><p>Собираешь свой оффер по&nbsp;шаблону: ценность, срочность, понятный следующий шаг.</p></div></div>
       <div class="mod"><div class="num">04</div><div><h3>Поиск контактов</h3><p>Где лежат твои тёплые клиенты: разбираем переписки, базу и&nbsp;окружение. Собираешь список из&nbsp;20–30 тёплых контактов.</p></div></div>
       <div class="mod"><div class="num">05</div><div><h3>Отрабатываем возражения</h3><p>Готовые ответы на&nbsp;«дорого», «посоветуюсь», «нет времени» и&nbsp;«потом». Без давления и&nbsp;уговоров.</p></div></div>
-      <div class="mod"><div class="num">06</div><div><h3>AI-продавец</h3><p>Настраиваешь нейросеть, которая помогает писать клиентам, готовить касания и&nbsp;отвечать на&nbsp;возражения в&nbsp;твоём стиле.</p></div></div>
       <div class="mod final"><div class="num">★</div><div><h3>Финал: первые деньги</h3><p>Отправляешь касания по&nbsp;своему списку и&nbsp;получаешь продажи. Главное — навык продавать без стеснения, он останется с&nbsp;тобой.</p></div></div>
+      <div class="mod bonus"><div class="num">🎁</div><div><h3>Бонус: ранний доступ к&nbsp;GOLDEN STONE</h3><p>Игра-тренажёр по&nbsp;переговорам и&nbsp;речевому влиянию. AI играет за&nbsp;твоих оппонентов, ты пробуешь приёмы в&nbsp;безопасной обстановке и&nbsp;видишь, что сработало. Для участников практикума — раньше всех.</p></div></div>
     </div>
   </div>
 </section>
@@ -431,7 +433,7 @@ footer .req{display:block;font-size:12px;margin-top:4px}
       <div><b>Онлайн</b><span>Короткие видеоуроки — смотришь в&nbsp;удобное время.</span></div>
       <div><b>В Telegram</b><span>Уроки и&nbsp;материалы приходят в&nbsp;бота сразу после оплаты.</span></div>
       <div><b>Практика</b><span>Задание в&nbsp;каждом уроке — делаешь прямо по&nbsp;ходу.</span></div>
-      <div><b>Инструменты</b><span>Скрипты, шаблоны оффера и&nbsp;AI-продавец остаются у&nbsp;тебя.</span></div>
+      <div><b>Инструменты</b><span>Скрипты и&nbsp;шаблоны оффера остаются у&nbsp;тебя + ранний доступ к&nbsp;игре GOLDEN STONE.</span></div>
     </div>
   </div>
 </section>
@@ -490,8 +492,8 @@ footer .req{display:block;font-size:12px;margin-top:4px}
 <script>
 (function(){
   /* Ссылка на оплату Prodamus — заменить, когда будет готова */
-  var PAY_URL = "https://t.me/vadim_palii_bot";
-  document.querySelectorAll('.js-pay').forEach(function(a){ a.href = PAY_URL; a.target = "_blank"; a.rel = "noopener"; });
+  var PAY_URL = "https://dengi.vadimpalii.pro/pay" + location.search;
+  document.querySelectorAll('.js-pay').forEach(function(a){ a.href = PAY_URL; a.removeAttribute("target"); a.removeAttribute("rel"); });
 
   var pad = function(n){ return (n<10?'0':'') + n; };
   function tick(){
@@ -538,7 +540,7 @@ footer .req{display:block;font-size:12px;margin-top:4px}
     e.preventDefault();
     if(!ok){var c=sheet.querySelector('.consent');c.classList.remove('nudge');void c.offsetWidth;c.classList.add('nudge');return;}
     var u=pay||document.querySelector('a.js-pay').href;close();
-    var w=window.open(u,'_blank');if(!w)location.href=u;
+    location.href=u;
   });
   sheet.addEventListener('click',function(e){if(e.target===sheet||e.target.classList.contains('x'))close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
